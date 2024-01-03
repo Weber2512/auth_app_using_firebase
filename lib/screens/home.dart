@@ -1,3 +1,5 @@
+import 'package:auth_app/widgets/chats_messages.dart';
+import 'package:auth_app/widgets/new_messages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -20,9 +22,10 @@ class _HomeState extends State<Home> {
           }, icon: Icon(Icons.exit_to_app)),
         ],
       ),
-      body: const Center(
-        child: Text('Logged In'),
-      ),
+      body:const Column(children: [
+        Expanded(child: ChatsMessages()),
+        NewMessages(),
+      ],)
     );
   }
 }

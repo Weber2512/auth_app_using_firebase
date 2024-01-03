@@ -17,6 +17,7 @@ class _SignInPageState extends State<SignInPage> {
   File? _selectImage;
   var _globalkey = GlobalKey<FormState>();
   var enteredEmail = '';
+  var username = '';
   var enteredPass = '';
   var isLogin = true;
   var isuploading = false;
@@ -59,9 +60,10 @@ class _SignInPageState extends State<SignInPage> {
         final stringurl = await storagefile.getDownloadURL();
 
         await FirebaseFirestore.instance.collection('users').doc(user_credentials.user!.uid).set({
-          'username': '',
+          'username': username,
           'email': enteredEmail,
           'image_url' : stringurl,
+          'password': enteredPass,
         });
 
 
@@ -101,7 +103,7 @@ class _SignInPageState extends State<SignInPage> {
                     },
                   ),
                 TextFormField(
-                  maxLength: 100,
+                  // maxLength: 100,
                   autocorrect: false,
                   decoration: InputDecoration(
                       label: Text('Enter the email'),
@@ -124,8 +126,28 @@ class _SignInPageState extends State<SignInPage> {
                 SizedBox(
                   height: 10,
                 ),
+                if(!isLogin)
+                  TextFormField(
+                    decoration: InputDecoration(labelText: 'Username', border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(3)))),
+                    enableSuggestions: false,
+                    validator: (value) {
+                      if (value == null || value.trim().length <4 || value.isEmpty) {
+                        return 'please enter at least 4 characters';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      username = value!;
+                    },
+                  ),
+
+                SizedBox(
+                  height: 10,
+                ),
+
                 TextFormField(
-                  maxLength: 100,
+                  // maxLength: 100,
                   autocorrect: false,
                   decoration: InputDecoration(
                       label: Text('Enter the Password'),
