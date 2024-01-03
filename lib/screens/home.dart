@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
         ],
       ),
       body:const Column(children: [
-        Expanded(child: ChatsMessages()),
+        Expanded(child: ChatMessages()),
         NewMessages(),
       ],)
     );
