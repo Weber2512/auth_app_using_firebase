@@ -38,7 +38,7 @@ class _NewMessagesState extends State<NewMessages> {
       'time': Timestamp.now(),
       'id': userid.uid,
       'username' : userData.data()!['username'],
-      'userImage': userData.data()!['image-url'],
+      'userImage': userData.data()!['image_url'],
     });
 
   }
@@ -54,7 +54,7 @@ class _NewMessagesState extends State<NewMessages> {
               controller: _messagecontroller,
               autocorrect: true,
               textCapitalization: TextCapitalization.sentences,
-              decoration: InputDecoration(labelText: 'Type the message...'),
+              decoration:const  InputDecoration(labelText: 'Type the message...'),
             ),
           ),
           IconButton(onPressed: _submitMessages, icon: Icon(Icons.send)),
